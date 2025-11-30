@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웰커머 성향 테스트</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  /* Background color tokens (Light Mode) */
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+
+  /* Spacing */
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+
+  /* Border Radius */
+  --radius-base: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+
+  /* Animation */
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(190, 24, 93, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+    format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-base);
+    line-height: var(--line-height-normal);
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-16);
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-48) var(--space-32);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Welcome Screen */
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+    gap: var(--space-24);
+}
+
+.welcome-icon {
+    font-size: 64px;
+    margin-bottom: var(--space-16);
+}
+
+.welcome-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-12);
+}
+
+.welcome-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-32);
+}
+
+/* Question Screen */
+.question-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.progress-bar {
+    margin-bottom: var(--space-32);
+}
+
+.progress-text {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-8);
+    font-weight: var(--font-weight-medium);
+}
+
+.progress-track {
+    width: 100%;
+    height: 6px;
+    background-color: var(--color-secondary);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: 3px;
+    transition: width var(--duration-normal) var(--ease-standard);
+}
+
+.question-text {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-48);
+    line-height: var(--line-height-tight);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin-bottom: var(--space-32);
+}
+
+.option-button {
+    width: 100%;
+    padding: var(--space-24) var(--space-24);
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+    text-align: left;
+    font-family: var(--font-family-base);
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+}
+
+.option-button:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-bg-1);
+}
+
+.option-button.selected {
+    border-color: var(--color-primary);
+    background-color: var(--color-bg-1);
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.option-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-base);
+    flex-shrink: 0;
+}
+
+.option-button.selected .option-label {
+    background-color: var(--color-primary);
+    color: var(--color-btn-primary-text);
+}
+
+.option-text {
+    flex: 1;
+}
+
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+}
+
+.btn {
+    padding: var(--space-16) var(--space-32);
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+    border: none;
+    font-family: var(--font-family-base);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-btn-primary-text);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active:not(:disabled) {
+    background-color: var(--color-primary-active);
+}
+
+.btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-large {
+    padding: var(--space-20) var(--space-48);
+    font-size: var(--font-size-xl);
+    min-width: 200px;
+}
+
+/* Result Screen */
+.result-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    justify-content: center;
+    gap: var(--space-24);
+}
+
+.result-icon {
+    font-size: 80px;
+    margin-bottom: var(--space-16);
+}
+
+.result-type {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-8);
+}
+
+.result-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-24);
+}
+
+.result-description {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin-bottom: var(--space-32);
+}
+
+.result-item {
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    padding: var(--space-16);
+    background-color: var(--color-bg-1);
+    border-radius: var(--radius-base);
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: var(--space-32) var(--space-24);
+        min-height: 450px;
+    }
+
+    .welcome-title,
+    .result-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .question-text {
+        font-size: var(--font-size-2xl);
+    }
+
+    .option-button {
+        padding: var(--space-20) var(--space-20);
+        font-size: var(--font-size-base);
+    }
+
+    .btn-large {
+        padding: var(--space-16) var(--space-32);
+        font-size: var(--font-size-lg);
+        min-width: 160px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="screen active">
+            <div class="welcome-content">
+                <div class="welcome-icon">👋</div>
+                <h1 class="welcome-title">웰커머 성향 테스트</h1>
+                <p class="welcome-description">
+                    당신은 어떤 유형의 웰커머인가요?<br>
+                    4가지 질문으로 알아보세요!
+                </p>
+                <button class="btn btn-primary btn-large" onclick="startTest()">테스트 시작</button>
+            </div>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="questionScreen" class="screen">
+            <div class="question-content">
+                <div class="progress-bar">
+                    <div class="progress-text" id="progressText">Q1 / 4</div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill" style="width: 25%"></div>
+                    </div>
+                </div>
+
+                <h2 class="question-text" id="questionText"></h2>
+
+                <div class="options" id="optionsContainer"></div>
+
+                <div class="navigation">
+                    <button class="btn btn-primary" id="nextButton" onclick="nextQuestion()" disabled>다음</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="resultScreen" class="screen">
+            <div class="result-content">
+                <div class="result-icon" id="resultIcon"></div>
+                <div class="result-type" id="resultType"></div>
+                <h2 class="result-title" id="resultTitle"></h2>
+                <div class="result-description" id="resultDescription"></div>
+                <button class="btn btn-primary btn-large" onclick="restartTest()">다시 테스트</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz data
+        const questions = [
+            {
+                id: 1,
+                text: "새로운 사람을 만나면 나는",
+                options: [
+                    { value: "A", text: "먼저 다가가 대화 건다" },
+                    { value: "B", text: "상대가 말해주면 편하다" }
+                ]
+            },
+            {
+                id: 2,
+                text: "누군가 어색해 보이면",
+                options: [
+                    { value: "A", text: "먼저 말 걸고 분위기를 풀어주는 편" },
+                    { value: "B", text: "옆에서 조용히 챙겨주는 편" }
+                ]
+            },
+            {
+                id: 3,
+                text: "익숙하지 않은 사람과 함께 있을 때",
+                options: [
+                    { value: "A", text: "먼저 웃고 인사하며 긴장 풀어준다" },
+                    { value: "B", text: "조용히 배려하고 편안함을 준다" }
+                ]
+            },
+            {
+                id: 4,
+                text: "새가족을 돕는다면",
+                options: [
+                    { value: "A", text: "안내, 환영, 대화 담당하고 싶다" },
+                    { value: "B", text: "조용히 챙기고 뒤에서 도와주고 싶다" }
+                ]
+            }
+        ];
+
+        const results = [
+            {
+                type: 1,
+                title: "밝은 에너지형 웰커머",
+                condition: "A 3개 이상",
+                description: [
+                    "먼저 다가가고, 분위기를 주도하며 사람들을 편안하게 만드는 유형",
+                    "밝고 친근한 에너지로 새가족을 환영하는 역할에 잘 어울림",
+                    "안내·환영·소통 담당 PERFECT!"
+                ],
+                emoji: "🌟"
+            },
+            {
+                type: 2,
+                title: "따뜻한 웰커머",
+                condition: "B 3개 이상",
+                description: [
+                    "조용하지만 깊이 있게 사람을 챙기고 편안함을 주는 유형",
+                    "새가족이 부담 없이 머물 수 있도록 뒤에서 부드럽게 돕는 스타일",
+                    "배려·안내·정리 담당에 찰떡!"
+                ],
+                emoji: "🤍"
+            },
+            {
+                type: 3,
+                title: "다재다능 웰커머",
+                condition: "A 2개 / B 2개",
+                description: [
+                    "상황에 따라 리더도 되고 서포터도 될 수 있는 유연한 유형",
+                    "필요할 땐 말도 걸고, 상대가 편해야 할 땐 배려도 잘함",
+                    "웰컴팀 내 어떤 역할도 무리 없이 소화 가능!"
+                ],
+                emoji: "✨"
+            }
+        ];
+
+        // State management using JavaScript variables
+        let currentQuestionIndex = 0;
+        let answers = [];
+        let selectedAnswer = null;
+
+        // Screen management
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // Start test
+        function startTest() {
+            currentQuestionIndex = 0;
+            answers = [];
+            selectedAnswer = null;
+            showScreen('questionScreen');
+            displayQuestion();
+        }
+
+        // Display current question
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            const progressPercent = ((currentQuestionIndex + 1) / questions.length) * 100;
+
+            // Update progress
+            document.getElementById('progressText').textContent = `Q${currentQuestionIndex + 1} / ${questions.length}`;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+
+            // Update question text
+            document.getElementById('questionText').textContent = question.text;
+
+            // Clear and populate options
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option-button';
+                button.onclick = () => selectAnswer(option.value);
+
+                const label = document.createElement('span');
+                label.className = 'option-label';
+                label.textContent = option.value;
+
+                const text = document.createElement('span');
+                text.className = 'option-text';
+                text.textContent = option.text;
+
+                button.appendChild(label);
+                button.appendChild(text);
+                optionsContainer.appendChild(button);
+            });
+
+            // Reset selection
+            selectedAnswer = null;
+            document.getElementById('nextButton').disabled = true;
+        }
+
+        // Select answer
+        function selectAnswer(value) {
+            selectedAnswer = value;
+
+            // Update UI
+            document.querySelectorAll('.option-button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            // Enable next button
+            document.getElementById('nextButton').disabled = false;
+        }
+
+        // Next question
+        function nextQuestion() {
+            if (selectedAnswer === null) return;
+
+            // Save answer
+            answers.push(selectedAnswer);
+
+            // Check if more questions
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                // Show results
+                calculateAndShowResult();
+            }
+        }
+
+        // Calculate result
+        function calculateAndShowResult() {
+            const aCount = answers.filter(a => a === 'A').length;
+            const bCount = answers.filter(a => a === 'B').length;
+
+            let resultIndex;
+            if (aCount >= 3) {
+                resultIndex = 0; // Type 1: 밝은 에너지형
+            } else if (bCount >= 3) {
+                resultIndex = 1; // Type 2: 따뜻한 웰커머
+            } else {
+                resultIndex = 2; // Type 3: 다재다능 웰커머
+            }
+
+            const result = results[resultIndex];
+
+            // Display result
+            document.getElementById('resultIcon').textContent = result.emoji;
+            document.getElementById('resultType').textContent = `Type ${result.type}`;
+            document.getElementById('resultTitle').textContent = result.title;
+
+            const descriptionContainer = document.getElementById('resultDescription');
+            descriptionContainer.innerHTML = '';
+            result.description.forEach(desc => {
+                const item = document.createElement('div');
+                item.className = 'result-item';
+                item.textContent = desc;
+                descriptionContainer.appendChild(item);
+            });
+
+            showScreen('resultScreen');
+        }
+
+        // Restart test
+        function restartTest() {
+            currentQuestionIndex = 0;
+            answers = [];
+            selectedAnswer = null;
+            showScreen('welcomeScreen');
+        }
+    </script>
+</body>
+</html>
